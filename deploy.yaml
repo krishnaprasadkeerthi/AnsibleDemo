@@ -2,16 +2,15 @@
 - hosts: all
   become: yes
   vars_files:
-    - /etc/ansible/credentials.yml
+    - /etc/ansible/cred.yml
   tasks:
    - name: Download a WAR File to the Tomcat webapps directory to be deployed
      maven_artifact:
        group_id: com.devops4solutions
        artifact_id: LoginWebApp
        extension: war
-       repository_url: 'http://"${nexus_ip}":8081/repository/maven-releases/'
-       version: "{{ ArtifactVersion }}"
+       repository_url: 'http://13.126.249.215:8081/kpdevops/repository/kpdevops1-release/'
+       version: "{{ versionToBeDownloaded }}"
        username: "{{ username }}"
        password: "{{ password }}"
-       dest: /opt/apache-tomcat-9.0.65/webapps/
-       
+       dest: /opt/apache-tomcat-9.0.68/webapps/     
